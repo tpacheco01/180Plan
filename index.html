@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your 180 Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --paper: #f5f2eb;
+    --cream: #ede9df;
+    --accent: #c8410a;
+    --accent-light: #e8a882;
+    --gold: #b8913a;
+    --mid: #6b6760;
+    --rule: #d4cfc4;
+    --green: #3a6b4a;
+    --blue: #2a4a6b;
+    --section-pad: 48px 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* HEADER */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 56px 40px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,65,10,0.3);
+  }
+  .masthead::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 40%;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,145,58,0.25);
+  }
+  .masthead-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 16px;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .masthead h1 span { color: var(--accent); }
+  .masthead-sub {
+    font-size: 15px;
+    color: #a09a90;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .masthead-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--paper);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #807870;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* NAV */
+  .nav {
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .nav-inner {
+    display: flex;
+    gap: 0;
+  }
+  .nav a {
+    display: inline-block;
+    padding: 14px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: var(--section-pad);
+    border-bottom: 1px solid var(--rule);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    min-width: 32px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+  .card-body { font-size: 13.5px; color: #4a4845; line-height: 1.6; }
+  .card.accent-card { border-left: 3px solid var(--accent); }
+  .card.green-card { border-left: 3px solid var(--green); }
+  .card.gold-card { border-left: 3px solid var(--gold); }
+  .card.blue-card { border-left: 3px solid var(--blue); }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    padding-top: 2px;
+    letter-spacing: 0.05em;
+  }
+  .tl-content {}
+  .tl-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .tl-detail { font-size: 13px; color: var(--mid); }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .tag-red { background: #fdeee8; color: var(--accent); }
+  .tag-green { background: #e8f0ea; color: var(--green); }
+  .tag-gold { background: #f5efe0; color: var(--gold); }
+  .tag-blue { background: #e0e8f0; color: var(--blue); }
+  .tag-gray { background: var(--cream); color: var(--mid); }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
+  th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+  }
+  td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #faf9f6; }
+  .td-name { font-weight: 500; }
+  .td-keep { color: var(--green); font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .td-drop { color: var(--accent); font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .td-add { color: var(--blue); font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* MEAL PLANS */
+  .meal-plans { display: flex; flex-direction: column; gap: 24px; }
+  .meal-plan {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .meal-plan-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .meal-plan-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+  }
+  .meal-plan-macros {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-light);
+  }
+  .meal-plan-body { padding: 0; }
+  .meal-row {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 16px;
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .meal-row:last-child { border-bottom: none; }
+  .meal-time {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding-top: 1px;
+  }
+  .meal-name { font-size: 13.5px; font-weight: 500; }
+  .meal-detail { font-size: 12px; color: var(--mid); margin-top: 2px; }
+  .meal-protein {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* NOTICE BOXES */
+  .notice {
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .notice-red { background: #fdeee8; border-left: 3px solid var(--accent); }
+  .notice-green { background: #e8f0ea; border-left: 3px solid var(--green); }
+  .notice-gold { background: #f5efe0; border-left: 3px solid var(--gold); }
+  .notice strong { font-weight: 600; }
+
+  /* WEEK GRID */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin: 20px 0;
+  }
+  .day-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .day-card.rest-day { background: var(--cream); }
+  .day-card.travel-day { border-color: var(--gold); background: #f5efe0; }
+  .day-name {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+  .day-badge {
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 3px;
+    margin: 2px 0;
+    display: block;
+  }
+  .badge-cycle { background: #fdeee8; color: var(--accent); }
+  .badge-strength { background: #e0e8f0; color: var(--blue); }
+  .badge-walk { background: #e8f0ea; color: var(--green); }
+  .badge-mobility { background: #f5efe0; color: var(--gold); }
+  .badge-rest { background: var(--cream); color: var(--mid); }
+
+  /* MAINTENANCE */
+  .trigger-band {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 4px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .trigger-band h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--accent-light);
+  }
+  .trigger-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .trigger-item {
+    flex: 1;
+    min-width: 160px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 14px;
+  }
+  .trigger-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #807870; margin-bottom: 6px; }
+  .trigger-val { font-family: 'Playfair Display', serif; font-size: 22px; }
+  .trigger-val.danger { color: var(--accent); }
+  .trigger-val.safe { color: #7abf8a; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    color: #605a52;
+    padding: 32px 40px;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* PRINT & UTILITY */
+  .divider { height: 1px; background: var(--rule); margin: 28px 0; }
+  .lead { font-size: 16px; color: var(--mid); line-height: 1.7; margin-bottom: 28px; font-weight: 300; }
+  .mono { font-family: 'DM Mono', monospace; }
+  h3.sub { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); margin: 28px 0 14px; }
+
+  @media (max-width: 600px) {
+    .container { padding: 0 20px; }
+    .masthead { padding: 40px 20px 36px; }
+    .nav { padding: 0 20px; }
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+    .meal-row { grid-template-columns: 80px 1fr; }
+    .meal-protein { display: none; }
+    .masthead-stats { gap: 20px; }
+    .tl-item { grid-template-columns: 70px 1fr; }
+  }
+
+  @media print {
+    .nav { display: none; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-label">Personal Health Protocol · Est. 2026</div>
+  <h1>The <span>180</span> Plan</h1>
+  <p class="masthead-sub">A complete operating system for getting to 180 lbs, staying there, and performing well at 60 and beyond.</p>
+  <div class="masthead-stats">
+    <div class="stat">
+      <div class="stat-num">200→180</div>
+      <div class="stat-label">Target lbs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1,200</div>
+      <div class="stat-label">Cal deficit / day</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">150–180g</div>
+      <div class="stat-label">Daily protein</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4–5 mo</div>
+      <div class="stat-label">Realistic timeline</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#schedule">Daily Schedule</a>
+    <a href="#exercise">Exercise</a>
+    <a href="#supplements">Supplements</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#mobility">Mobility</a>
+    <a href="#tech">Tracking</a>
+    <a href="#travel">Travel</a>
+    <a href="#maintenance">Maintenance</a>
+  </div>
+</nav>
+
+<!-- DAILY SCHEDULE -->
+<section class="section" id="schedule">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Daily Schedule</h2>
+    </div>
+    <p class="lead">Built around a 5:30–6:00am wake and 9am start to work. Everything important happens before your calendar owns you.</p>
+
+    <h3 class="sub">Training Day (Mon · Tue · Thu · Fri · Sat)</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">5:30am</div>
+        <div class="tl-content">
+          <div class="tl-title">Wake + Dog Walk (Summer)</div>
+          <div class="tl-detail">2+ miles. Low intensity. NEAT calories. Sets circadian rhythm. In cooler months, shift walk to whenever schedule permits.</div>
+          <div class="tl-tags"><span class="tag tag-green">Active Recovery</span><span class="tag tag-gray">~200–300 cal</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">6:00am</div>
+        <div class="tl-content">
+          <div class="tl-title">AG1 + Hydration</div>
+          <div class="tl-detail">AG1 in 16oz water on an empty stomach. Start working toward 3–4L total water today.</div>
+          <div class="tl-tags"><span class="tag tag-gold">Supplement</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">6:15am</div>
+        <div class="tl-content">
+          <div class="tl-title">Breakfast — Protein First</div>
+          <div class="tl-detail">Greek yogurt (20g protein) or protein shake (40g). Light carbs if training hard. See Nutrition section for options.</div>
+          <div class="tl-tags"><span class="tag tag-green">~40–50g protein</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">6:45am</div>
+        <div class="tl-content">
+          <div class="tl-title">Pre-Workout</div>
+          <div class="tl-detail">Transparent Labs LEAN — one serving 20–30 min before training. Contains caffeine and citrulline. Do not take after 12pm.</div>
+          <div class="tl-tags"><span class="tag tag-red">Caffeine cutoff: 1pm</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">7:00am</div>
+        <div class="tl-content">
+          <div class="tl-title">Training Block</div>
+          <div class="tl-detail">Peloton cycling 30–45 min + Peloton Advanced Strength 30 min. Alternate focus or combine. Track dumbbell weights weekly — progressive overload is your muscle preservation signal.</div>
+          <div class="tl-tags"><span class="tag tag-red">Cycling</span><span class="tag tag-blue">Strength</span><span class="tag tag-gray">60–75 min total</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">8:15am</div>
+        <div class="tl-content">
+          <div class="tl-title">Post-Workout: Protein + Creatine</div>
+          <div class="tl-detail">40g whey protein shake + banana or 30g oats. Add 5g creatine monohydrate here — convenient habit stack. Carbs here do not undermine the deficit; they blunt cortisol and restore glycogen.</div>
+          <div class="tl-tags"><span class="tag tag-green">~40g protein</span><span class="tag tag-blue">Creatine 5g</span><span class="tag tag-gold">30–50g carbs</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">8:30am</div>
+        <div class="tl-content">
+          <div class="tl-title">Mobility — 10 minutes</div>
+          <div class="tl-detail">Post-workout while warm. Hip flexors, thoracic spine, hamstrings, shoulders. Peloton stretch classes or GOWOD app.</div>
+          <div class="tl-tags"><span class="tag tag-gold">Mobility</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">8:45am</div>
+        <div class="tl-content">
+          <div class="tl-title">Shower + Ready</div>
+          <div class="tl-detail">You're done with health before 9am. Day owned.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:30pm</div>
+        <div class="tl-content">
+          <div class="tl-title">Lunch — Protein Anchor</div>
+          <div class="tl-detail">6oz chicken, turkey, or lean beef. Vegetables. Moderate complex carbs. See meal rotation in Nutrition section.</div>
+          <div class="tl-tags"><span class="tag tag-green">~45–50g protein</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">3:30pm</div>
+        <div class="tl-content">
+          <div class="tl-title">Afternoon Snack (if needed)</div>
+          <div class="tl-detail">Protein shake, Greek yogurt, or cottage cheese incorporated into a recipe. Not always required — read hunger honestly.</div>
+          <div class="tl-tags"><span class="tag tag-green">~20–25g protein</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">6:30pm</div>
+        <div class="tl-content">
+          <div class="tl-title">Dinner</div>
+          <div class="tl-detail">Lean protein + vegetables + moderate carbs. Fatty 15 and Omega-3 taken with dinner (fat-soluble — absorb better with food).</div>
+          <div class="tl-tags"><span class="tag tag-green">~45–50g protein</span><span class="tag tag-gold">Fatty 15 + Omega-3</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">8:30pm</div>
+        <div class="tl-content">
+          <div class="tl-title">Pre-Sleep: Cottage Cheese + Moonbrew</div>
+          <div class="tl-detail">Cottage cheese incorporated (see recipes below) = slow-release casein protein overnight. Moonbrew 30 min before bed. D3+K2 taken here.</div>
+          <div class="tl-tags"><span class="tag tag-green">~20–25g protein</span><span class="tag tag-gold">Moonbrew</span><span class="tag tag-blue">D3+K2</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3 class="sub">Low-Impact Day (Wed + one weekend day)</h3>
+    <div class="notice notice-gold">
+      <strong>No complete rest.</strong> Dog walk (2+ miles) + 10–15 min mobility/stretch work only. This is recovery, not a day off. Peloton has excellent recovery ride and stretching classes — 20 min easy spin at low output counts.
+    </div>
+  </div>
+</section>
+
+<!-- EXERCISE -->
+<section class="section" id="exercise">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Exercise Protocol</h2>
+    </div>
+
+    <h3 class="sub">Weekly Structure</h3>
+    <div class="week-grid">
+      <div class="day-card">
+        <div class="day-name">Mon</div>
+        <span class="day-badge badge-cycle">Cycling</span>
+        <span class="day-badge badge-strength">Strength</span>
+        <span class="day-badge badge-walk">Walk</span>
+      </div>
+      <div class="day-card">
+        <div class="day-name">Tue</div>
+        <span class="day-badge badge-cycle">Cycling</span>
+        <span class="day-badge badge-strength">Strength</span>
+        <span class="day-badge badge-walk">Walk</span>
+      </div>
+      <div class="day-card rest-day">
+        <div class="day-name">Wed</div>
+        <span class="day-badge badge-walk">Walk</span>
+        <span class="day-badge badge-mobility">Mobility</span>
+        <span class="day-badge badge-rest">Low Impact</span>
+      </div>
+      <div class="day-card">
+        <div class="day-name">Thu</div>
+        <span class="day-badge badge-cycle">Cycling</span>
+        <span class="day-badge badge-strength">Strength</span>
+        <span class="day-badge badge-walk">Walk</span>
+      </div>
+      <div class="day-card">
+        <div class="day-name">Fri</div>
+        <span class="day-badge badge-cycle">Cycling</span>
+        <span class="day-badge badge-strength">Strength</span>
+        <span class="day-badge badge-walk">Walk</span>
+      </div>
+      <div class="day-card">
+        <div class="day-name">Sat</div>
+        <span class="day-badge badge-cycle">Cycling</span>
+        <span class="day-badge badge-strength">Strength</span>
+        <span class="day-badge badge-walk">Walk</span>
+      </div>
+      <div class="day-card rest-day">
+        <div class="day-name">Sun</div>
+        <span class="day-badge badge-walk">Walk</span>
+        <span class="day-badge badge-mobility">Mobility</span>
+        <span class="day-badge badge-rest">Low Impact</span>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card accent-card">
+        <div class="card-label">Peloton Cycling</div>
+        <div class="card-title">30–45 Minutes</div>
+        <div class="card-body">Advanced rides. Use output (watts) as your performance metric — track it week over week, not just calories. Output plateau = recovery signal.</div>
+      </div>
+      <div class="card blue-card">
+        <div class="card-label">Peloton Advanced Strength</div>
+        <div class="card-title">30 Minutes</div>
+        <div class="card-body">Compound movements, dumbbells, full body. <strong>Log your weights every session.</strong> If you can't match last week's weights, your deficit or recovery needs attention.</div>
+      </div>
+      <div class="card green-card">
+        <div class="card-label">Daily Walk</div>
+        <div class="card-title">2+ Miles</div>
+        <div class="card-body">200–300 cal of NEAT daily. Underestimated. Non-negotiable even on low-impact days. Summer: 5:30am. Other seasons: whenever.</div>
+      </div>
+      <div class="card gold-card">
+        <div class="card-label">Overtraining Warning Signs</div>
+        <div class="card-title">Watch For These</div>
+        <div class="card-body">Persistent joint pain · Sleep quality declining · Strength going backwards · Mood and motivation dropping. Two or more simultaneously = reduce volume, not willpower.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPLEMENTS -->
+<section class="section" id="supplements">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Supplement Protocol</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Supplement</th>
+          <th>Status</th>
+          <th>Dose & Timing</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-name">AG1</td>
+          <td class="td-keep">Keep</td>
+          <td>1 serving · 6am with water, empty stomach</td>
+          <td>Micronutrient foundation. Adaptogens, enzymes, probiotics. Your daily baseline.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Moonbrew</td>
+          <td class="td-keep">Keep</td>
+          <td>1 serving · 8:30–9pm, 30 min before bed</td>
+          <td>Sleep is working. Protect it. Sleep quality directly drives fat loss and recovery at 60.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Fatty 15 (C15:0)</td>
+          <td class="td-keep">Keep</td>
+          <td>Per label · with dinner</td>
+          <td>Promising science, not proven. Take with fat-containing meal for absorption.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Transparent Labs LEAN</td>
+          <td class="td-add">Replace C4</td>
+          <td>1 serving · 6:45am, 20–30 min pre-workout</td>
+          <td>Clinically dosed citrulline + caffeine. No fake fat-burn marketing. Hard cutoff: do not take after 12pm.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Creatine Monohydrate</td>
+          <td class="td-add">Add</td>
+          <td>5g · post-workout shake daily</td>
+          <td>#1 priority add. Preserves lean muscle in a deficit. Decades of safety data. Cheap. Also emerging cognitive benefit data.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Omega-3 (EPA/DHA)</td>
+          <td class="td-add">Add</td>
+          <td>2–3g EPA/DHA · with dinner</td>
+          <td>Anti-inflammatory, cardiovascular, recovery. Not covered by Fatty 15 — different mechanism entirely.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Vitamin D3 + K2</td>
+          <td class="td-add">Add after testing</td>
+          <td>Per Function Health results · with dinner or before bed</td>
+          <td>Test first — don't guess dose. Affects testosterone, immune function, mood. K2 directs calcium to bone not arteries.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Whey Protein</td>
+          <td class="td-add">Add</td>
+          <td>40g · post-workout + as needed to hit 150–180g/day</td>
+          <td>Most important intervention on this list. Muscle preservation in deficit requires consistent leucine hits throughout the day.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Collagen Peptides</td>
+          <td class="td-add">Consider</td>
+          <td>10–15g · morning or post-workout</td>
+          <td>Joint and connective tissue support at 60. Does not count toward your 150g protein target — low leucine.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Bioma Probiotics</td>
+          <td class="td-drop">Drop</td>
+          <td>—</td>
+          <td>Fully redundant with AG1. Save the money.</td>
+        </tr>
+        <tr>
+          <td class="td-name">Balance of Nature</td>
+          <td class="td-drop">Drop</td>
+          <td>—</td>
+          <td>Fully redundant with AG1. Save the money.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="notice notice-red">
+      <strong>Do this first:</strong> Get Function Health bloodwork before starting your deficit. Retest at 90 days. D3 dosing specifically should follow your actual levels, not a label recommendation. HSA/FSA eligible — effective cost ~$240/year pre-tax.
+    </div>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<section class="section" id="nutrition">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Nutrition</h2>
+    </div>
+
+    <p class="lead">No seafood. No eggs. Limited legumes. 150–180g protein daily. 1,200 calorie deficit. These four constraints shape everything below.</p>
+
+    <div class="notice notice-gold">
+      <strong>Track in MacroFactor.</strong> Your 1,200 cal deficit is a target, not a certainty — most people are off by 20–30%. MacroFactor adjusts your targets weekly based on actual weight trend. Let the algorithm correct for reality.
+    </div>
+
+    <h3 class="sub">Protein Sources — Your Approved List</h3>
+    <div class="card-grid">
+      <div class="card green-card">
+        <div class="card-label">Primary Sources</div>
+        <div class="card-body">
+          <strong>Chicken breast</strong> (6oz = 50g) · <strong>Turkey breast</strong> (6oz = 50g) · <strong>Lean beef 93/7</strong> (6oz = 45g) · <strong>Pork tenderloin</strong> (6oz = 45g — as lean as chicken, underused)
+        </div>
+      </div>
+      <div class="card blue-card">
+        <div class="card-label">Dairy Sources</div>
+        <div class="card-body">
+          <strong>Greek yogurt</strong> (1 cup = 20g) · <strong>Cottage cheese</strong> (1 cup = 25g — see recipes below) · <strong>Whey protein</strong> (40g per scoop)
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">Cottage Cheese — How to Use It Without Eating It Plain</h3>
+    <div class="card-grid">
+      <div class="card accent-card">
+        <div class="card-label">Sweet Option</div>
+        <div class="card-title">Cottage Cheese Bowl</div>
+        <div class="card-body">Blend 1 cup cottage cheese smooth. Top with berries, a drizzle of honey, and crushed walnuts. Tastes like cheesecake filling. Texture completely transformed by blending.</div>
+      </div>
+      <div class="card accent-card">
+        <div class="card-label">Sweet Option</div>
+        <div class="card-title">Protein Pancakes</div>
+        <div class="card-body">Blend 1 cup cottage cheese + 2 bananas + ½ cup oats. Cook like pancakes. ~35g protein per batch, high satiety, genuinely good.</div>
+      </div>
+      <div class="card blue-card">
+        <div class="card-label">Savory Option</div>
+        <div class="card-title">Pasta Sauce Base</div>
+        <div class="card-body">Blend cottage cheese into marinara — becomes a creamy high-protein sauce. Mix into pasta or use as a pizza base. Undetectable texture, adds 20g protein per serving.</div>
+      </div>
+      <div class="card blue-card">
+        <div class="card-label">Savory Option</div>
+        <div class="card-title">Dip or Spread</div>
+        <div class="card-body">Blend with garlic, herbs, lemon. Use as a dip for vegetables or spread for wraps. Replaces hummus or cream cheese with 4x the protein.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Meal Plan Rotation — 4 Plans</h3>
+    <div class="meal-plans">
+
+      <!-- PLAN A -->
+      <div class="meal-plan">
+        <div class="meal-plan-header">
+          <div class="meal-plan-title">Plan A — Classic Lean</div>
+          <div class="meal-plan-macros">~175g protein · ~1,800 cal</div>
+        </div>
+        <div class="meal-plan-body">
+          <div class="meal-row">
+            <div class="meal-time">6:15am</div>
+            <div>
+              <div class="meal-name">Greek Yogurt + Protein Shake</div>
+              <div class="meal-detail">1 cup full-fat Greek yogurt + 1 scoop whey in water or almond milk</div>
+            </div>
+            <div class="meal-protein">50g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:15am</div>
+            <div>
+              <div class="meal-name">Post-Workout Shake + Banana</div>
+              <div class="meal-detail">1 scoop whey + 1 medium banana + 5g creatine</div>
+            </div>
+            <div class="meal-protein">40g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">12:30pm</div>
+            <div>
+              <div class="meal-name">Grilled Chicken + Roasted Veg + Brown Rice</div>
+              <div class="meal-detail">6oz chicken breast · mixed roasted vegetables · ½ cup brown rice</div>
+            </div>
+            <div class="meal-protein">50g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">6:30pm</div>
+            <div>
+              <div class="meal-name">Lean Beef + Sweet Potato + Greens</div>
+              <div class="meal-detail">6oz 93/7 ground beef · 1 small sweet potato · large side salad</div>
+            </div>
+            <div class="meal-protein">45g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:30pm</div>
+            <div>
+              <div class="meal-name">Blended Cottage Cheese Bowl</div>
+              <div class="meal-detail">1 cup blended cottage cheese · berries · honey drizzle · walnuts</div>
+            </div>
+            <div class="meal-protein">25g</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAN B -->
+      <div class="meal-plan">
+        <div class="meal-plan-header">
+          <div class="meal-plan-title">Plan B — Turkey Focus</div>
+          <div class="meal-plan-macros">~170g protein · ~1,750 cal</div>
+        </div>
+        <div class="meal-plan-body">
+          <div class="meal-row">
+            <div class="meal-time">6:15am</div>
+            <div>
+              <div class="meal-name">Protein Shake + Oats</div>
+              <div class="meal-detail">1 scoop whey blended with ½ cup oats, almond milk, cinnamon — overnight or hot</div>
+            </div>
+            <div class="meal-protein">45g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:15am</div>
+            <div>
+              <div class="meal-name">Post-Workout Shake + Apple</div>
+              <div class="meal-detail">1 scoop whey + apple + 5g creatine</div>
+            </div>
+            <div class="meal-protein">40g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">12:30pm</div>
+            <div>
+              <div class="meal-name">Turkey Breast + Quinoa + Roasted Veg</div>
+              <div class="meal-detail">6oz sliced turkey breast · ½ cup quinoa · roasted zucchini and peppers</div>
+            </div>
+            <div class="meal-protein">52g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">3:30pm</div>
+            <div>
+              <div class="meal-name">Greek Yogurt</div>
+              <div class="meal-detail">1 cup Greek yogurt + handful of blueberries</div>
+            </div>
+            <div class="meal-protein">20g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">6:30pm</div>
+            <div>
+              <div class="meal-name">Pork Tenderloin + Roasted Potatoes + Asparagus</div>
+              <div class="meal-detail">6oz pork tenderloin · roasted baby potatoes · asparagus with olive oil</div>
+            </div>
+            <div class="meal-protein">45g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:30pm</div>
+            <div>
+              <div class="meal-name">Cottage Cheese Dip + Vegetables</div>
+              <div class="meal-detail">Blended cottage cheese with herbs and garlic · celery, cucumber, bell pepper</div>
+            </div>
+            <div class="meal-protein">25g</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAN C -->
+      <div class="meal-plan">
+        <div class="meal-plan-header">
+          <div class="meal-plan-title">Plan C — High Satiety</div>
+          <div class="meal-plan-macros">~165g protein · ~1,850 cal</div>
+        </div>
+        <div class="meal-plan-body">
+          <div class="meal-row">
+            <div class="meal-time">6:15am</div>
+            <div>
+              <div class="meal-name">Cottage Cheese Protein Pancakes</div>
+              <div class="meal-detail">1 cup cottage cheese + 1 banana + ½ cup oats blended and cooked. Top with berries.</div>
+            </div>
+            <div class="meal-protein">35g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:15am</div>
+            <div>
+              <div class="meal-name">Post-Workout Shake</div>
+              <div class="meal-detail">1 scoop whey + water + 5g creatine. Keep it simple post-workout.</div>
+            </div>
+            <div class="meal-protein">40g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">12:30pm</div>
+            <div>
+              <div class="meal-name">Ground Turkey Stir-Fry</div>
+              <div class="meal-detail">6oz lean ground turkey · broccoli, snap peas, peppers · light soy/ginger sauce · ½ cup rice</div>
+            </div>
+            <div class="meal-protein">50g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">6:30pm</div>
+            <div>
+              <div class="meal-name">Chicken + Cottage Cheese Pasta</div>
+              <div class="meal-detail">5oz grilled chicken · pasta with blended cottage cheese marinara sauce · side salad</div>
+            </div>
+            <div class="meal-protein">55g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:30pm</div>
+            <div>
+              <div class="meal-name">Greek Yogurt + Protein Shake (if short)</div>
+              <div class="meal-detail">Check MacroFactor — if below 150g protein, add ½ scoop whey to yogurt</div>
+            </div>
+            <div class="meal-protein">20–40g</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAN D -->
+      <div class="meal-plan">
+        <div class="meal-plan-header">
+          <div class="meal-plan-title">Plan D — Batch Cook / Busy Week</div>
+          <div class="meal-plan-macros">~170g protein · ~1,800 cal</div>
+        </div>
+        <div class="meal-plan-body">
+          <div class="meal-row">
+            <div class="meal-time">6:15am</div>
+            <div>
+              <div class="meal-name">Overnight Protein Oats</div>
+              <div class="meal-detail">Made night before: ½ cup oats + 1 scoop whey + Greek yogurt + almond milk + berries. Zero morning prep.</div>
+            </div>
+            <div class="meal-protein">45g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:15am</div>
+            <div>
+              <div class="meal-name">Post-Workout Shake + Creatine</div>
+              <div class="meal-detail">Standard. 1 scoop whey + 5g creatine.</div>
+            </div>
+            <div class="meal-protein">40g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">12:30pm</div>
+            <div>
+              <div class="meal-name">Batch-Cooked Protein Bowl</div>
+              <div class="meal-detail">Pre-cooked chicken or turkey (batch Sunday) · roasted veg · mixed greens · olive oil + lemon. 3 min to assemble.</div>
+            </div>
+            <div class="meal-protein">50g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">6:30pm</div>
+            <div>
+              <div class="meal-name">Lean Beef or Pork + Vegetables</div>
+              <div class="meal-detail">Simple skillet. 6oz protein + whatever vegetables are in the fridge + seasoning. 15 min total.</div>
+            </div>
+            <div class="meal-protein">45g</div>
+          </div>
+          <div class="meal-row">
+            <div class="meal-time">8:30pm</div>
+            <div>
+              <div class="meal-name">Blended Cottage Cheese Bowl</div>
+              <div class="meal-detail">Sweet or savory. Pre-blended and stored in fridge — grab and go.</div>
+            </div>
+            <div class="meal-protein">25g</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notice notice-green" style="margin-top:24px;">
+      <strong>Fiber target: 35–40g daily.</strong> In a 1,200 cal deficit, fiber collapses without intention. Vegetables at every meal + psyllium husk if needed. Fiber drives satiety and stabilizes blood sugar — your two biggest allies in a deficit.
+    </div>
+  </div>
+</section>
+
+<!-- MOBILITY -->
+<section class="section" id="mobility">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Mobility & Recovery</h2>
+    </div>
+
+    <p class="lead">At 60, connective tissue and joint mobility fail before cardiovascular fitness does. Ten minutes here protects everything else in the plan.</p>
+
+    <h3 class="sub">Daily Mobility Routine — 10 Minutes Post-Workout</h3>
+    <div class="card-grid">
+      <div class="card gold-card">
+        <div class="card-label">Hip Flexors · 90 sec/side</div>
+        <div class="card-title">Kneeling Lunge Stretch</div>
+        <div class="card-body">Peloton cycling tightens hip flexors daily. This is your highest priority stretch. Do it every single session without exception.</div>
+      </div>
+      <div class="card gold-card">
+        <div class="card-label">Thoracic Spine · 2 min</div>
+        <div class="card-title">Foam Roller T-Spine</div>
+        <div class="card-body">Cycling and strength work compresses the upper back. Thoracic mobility protects your shoulders and lower back simultaneously.</div>
+      </div>
+      <div class="card gold-card">
+        <div class="card-label">Hamstrings · 60 sec/side</div>
+        <div class="card-title">Standing or Lying Stretch</div>
+        <div class="card-body">Tight hamstrings pull on the lower back. At your training volume, this is a slow injury waiting to happen without attention.</div>
+      </div>
+      <div class="card gold-card">
+        <div class="card-label">Shoulders · 60 sec/side</div>
+        <div class="card-title">Cross-Body + Doorframe</div>
+        <div class="card-body">Pressing movements and cycling posture internally rotate the shoulder. Counteract it daily.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Low-Impact Day Protocol (Wed + Sun)</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">Morning</div>
+        <div class="tl-content">
+          <div class="tl-title">Dog Walk 2+ Miles</div>
+          <div class="tl-detail">Active recovery. Keep moving. This is not optional on low-impact days.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">After Walk</div>
+        <div class="tl-content">
+          <div class="tl-title">Peloton Recovery Ride or Stretch Class</div>
+          <div class="tl-detail">20 min easy spin (low output, Zone 1) OR a Peloton yoga/stretch class. You already have access — use it. GOWOD app is an excellent alternative for structured mobility.</div>
+          <div class="tl-tags"><span class="tag tag-gold">GOWOD App</span><span class="tag tag-red">Peloton Stretch</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub">Recovery Signals — When to Back Off</h3>
+    <div class="notice notice-red">
+      If two or more appear simultaneously: reduce training volume for 5–7 days, do not push through.<br><br>
+      <strong>Persistent joint pain</strong> (not muscle soreness) · <strong>Sleep quality degrading</strong> despite Moonbrew · <strong>Strength declining</strong> week over week · <strong>Mood and motivation dropping</strong> significantly · <strong>Resting heart rate elevated</strong> 5+ bpm above baseline
+    </div>
+  </div>
+</section>
+
+<!-- TECH & TRACKING -->
+<section class="section" id="tech">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Tech & Tracking</h2>
+    </div>
+
+    <div class="card-grid">
+      <div class="card accent-card">
+        <div class="card-label">Heart Rate · ~$100</div>
+        <div class="card-title">Polar H10 Chest Strap</div>
+        <div class="card-body">Gold standard workout HR accuracy. Pairs natively with Peloton. Worn only during workouts — satisfies your no-all-day-watch constraint perfectly. Battery lasts months.</div>
+      </div>
+      <div class="card blue-card">
+        <div class="card-label">Body Composition · ~$200</div>
+        <div class="card-title">Withings Body Comp Scale</div>
+        <div class="card-body">Daily weight, body fat %, muscle mass, visceral fat, vascular age. At 60 in a deficit, muscle mass matters more than scale weight. This tells the real story.</div>
+      </div>
+      <div class="card green-card">
+        <div class="card-label">Sleep · ~$130</div>
+        <div class="card-title">Withings Sleep Analyzer</div>
+        <div class="card-body">Under-mattress pad. Nothing to wear. Tracks sleep stages, overnight HR, and breathing disturbances. Flags potential apnea — common at 60 and a major hidden fat loss blocker.</div>
+      </div>
+      <div class="card gold-card">
+        <div class="card-label">Nutrition · ~$70/yr</div>
+        <div class="card-title">MacroFactor App</div>
+        <div class="card-body">Adjusts your calorie target weekly based on actual weight trend — not static math. Critical for verifying your deficit is real. Tracks protein precisely.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Weekly Accountability Check-In — 5 Minutes Every Sunday</h3>
+    <div class="card blue-card" style="margin-top:4px;">
+      <div class="card-body">
+        <strong>1.</strong> 7-day average weight (not daily — trend matters, not noise)<br>
+        <strong>2.</strong> Days protein hit 150g+ (target: 5 of 7 minimum)<br>
+        <strong>3.</strong> Workouts completed vs planned<br>
+        <strong>4.</strong> Dumbbell weights vs prior week (holding, up, or down?)<br>
+        <strong>5.</strong> One honest observation: what worked, what didn't<br><br>
+        <em>Keep this in Notes app or a simple document. The discipline is in the ritual, not the tool.</em>
+      </div>
+    </div>
+
+    <div class="notice notice-gold" style="margin-top:20px;">
+      <strong>Function Health:</strong> Bloodwork before you start + retest at 90 days. HSA/FSA eligible. ~$240 effective cost pre-tax. Non-negotiable at your age and intervention level.
+    </div>
+  </div>
+</section>
+
+<!-- TRAVEL PROTOCOL -->
+<section class="section" id="travel">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Travel Protocol</h2>
+    </div>
+    <p class="lead">6 trips per year. This is where consistency breaks for most people. It won't for you if the system is already built.</p>
+
+    <div class="card-grid">
+      <div class="card accent-card">
+        <div class="card-label">Pack Always</div>
+        <div class="card-title">Travel Supplement Kit</div>
+        <div class="card-body">AG1 travel packs · pre-portioned creatine (5g bags) · single-serve whey packets · Moonbrew travel packs · Omega-3 caps · D3+K2 caps. All TSA compliant. Zero excuse for gaps.</div>
+      </div>
+      <div class="card blue-card">
+        <div class="card-label">Hotel Training</div>
+        <div class="card-title">Bodyweight Protocol</div>
+        <div class="card-body">No Peloton. No problem. 30-min bodyweight circuit: pushup variations · bodyweight squats + lunges · dips on chair · plank holds · burpees. Intensity over equipment.</div>
+      </div>
+      <div class="card green-card">
+        <div class="card-label">Nutrition on the Road</div>
+        <div class="card-title">Order Strategy</div>
+        <div class="card-body">Grilled chicken or turkey at any restaurant. Lean beef option almost always exists. Greek yogurt at any hotel breakfast. Protein shake in the room before client dinners — arrive not hungry.</div>
+      </div>
+      <div class="card gold-card">
+        <div class="card-label">The Rule</div>
+        <div class="card-title">Minimum Viable Day</div>
+        <div class="card-body">On the worst travel day: 20 min bodyweight workout + hit protein target + take supplements. That's it. That's enough to maintain. Perfection is not the goal — continuity is.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Hotel Bodyweight Circuit — 30 Minutes</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">0–5 min</div>
+        <div class="tl-content">
+          <div class="tl-title">Warmup</div>
+          <div class="tl-detail">Jumping jacks · leg swings · arm circles · hip circles. Elevate heart rate, mobilize joints.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">5–25 min</div>
+        <div class="tl-content">
+          <div class="tl-title">Circuit × 3 Rounds</div>
+          <div class="tl-detail">15 pushups · 20 bodyweight squats · 10 dips (chair) · 10 reverse lunges/leg · 30-sec plank · 10 pike pushups. Rest 60 sec between rounds.</div>
+          <div class="tl-tags"><span class="tag tag-blue">Full Body</span><span class="tag tag-green">No Equipment</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">25–30 min</div>
+        <div class="tl-content">
+          <div class="tl-title">Mobility Cooldown</div>
+          <div class="tl-detail">Hip flexors · thoracic spine · hamstrings. Same routine as home.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAINTENANCE -->
+<section class="section" id="maintenance">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Maintenance System</h2>
+    </div>
+
+    <p class="lead">Getting to 180 is not your problem. You've said so yourself. This section is the real work. Build the landing before you need to land.</p>
+
+    <div class="trigger-band">
+      <h3>The Trigger Band — Non-Negotiable</h3>
+      <p style="color:#a09a90; font-size:13px; margin-bottom:4px;">Define this now. Commit to it before you need it.</p>
+      <div class="trigger-row">
+        <div class="trigger-item">
+          <div class="trigger-label">Goal Weight</div>
+          <div class="trigger-val safe">180 lbs</div>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-label">Acceptable Range</div>
+          <div class="trigger-val" style="color:#e8c87a;">180–183 lbs</div>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-label">Trigger Point</div>
+          <div class="trigger-val danger">184 lbs</div>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-label">Response</div>
+          <div class="trigger-val" style="font-size:14px; color:#a09a90;">Back to 500 cal deficit. No debate.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice notice-red">
+      <strong>The biology works against you at goal weight.</strong> Leptin drops during weight loss and doesn't fully recover. Ghrelin stays elevated for months. Your body will signal hunger at maintenance calories — this is physiological, not weakness. Knowing this in advance is your edge.
+    </div>
+
+    <h3 class="sub">Maintenance Principles</h3>
+    <div class="card-grid">
+      <div class="card green-card">
+        <div class="card-label">Keep Tracking</div>
+        <div class="card-title">MacroFactor Doesn't Stop</div>
+        <div class="card-body">Switch to maintenance calories in the app. Keep logging. The scale and the app are your early warning system, not a diet tool. They're permanent infrastructure.</div>
+      </div>
+      <div class="card blue-card">
+        <div class="card-label">Reframe Exercise</div>
+        <div class="card-title">From Loss to Preservation</div>
+        <div class="card-body">At goal weight, exercise is no longer a weight loss tool. It is the maintenance mechanism. The psychology shifts — the routine doesn't. Same schedule, different purpose.</div>
+      </div>
+      <div class="card gold-card">
+        <div class="card-label">Retest</div>
+        <div class="card-title">Function Health at Goal Weight</div>
+        <div class="card-body">Bloodwork at goal weight confirms whether your new weight is sustainable or whether you've lost muscle. Testosterone, thyroid, and fasting insulin will tell you the truth.</div>
+      </div>
+      <div class="card accent-card">
+        <div class="card-label">The Weekly Ritual</div>
+        <div class="card-title">Sunday Check-In Continues</div>
+        <div class="card-body">Same 5-minute Sunday review. Forever. The moment you stop measuring is the moment the drift begins. You know this about yourself — keep the system that works.</div>
+      </div>
+    </div>
+
+    <div class="notice notice-green" style="margin-top:8px;">
+      <strong>Timeline reality check:</strong> 20 lbs in 4–5 months is realistic at your training volume and deficit. The first 5–7 lbs arrive fast (water/glycogen). The next 13 are slower. Muscle preservation — not scale speed — is the metric that matters most. A Withings scale reading 182 lbs with better body fat % than your 180 lb target is a win, not a failure.
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  The 180 Plan · Built May 2026 · Review with Function Health bloodwork at Day 0 and Day 90 · This document is a personal health protocol, not medical advice.
+</div>
+
+</body>
+</html>
